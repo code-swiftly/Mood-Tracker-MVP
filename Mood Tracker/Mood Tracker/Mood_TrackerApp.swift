@@ -12,7 +12,7 @@ import SwiftData
 struct Mood_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            MoodSelectionScreen()
+            MainView()
         }
         .modelContainer(for: SavedMood.self)
     }

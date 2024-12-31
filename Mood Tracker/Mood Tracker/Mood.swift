@@ -14,6 +14,7 @@ enum Mood: String, CaseIterable, Codable {
     case neutral = "Neutral"
     case pleasant = "Pleasant"
     case veryPleasant = "Very Pleasant"
+    case unknown = "Unknown"
     
     var color: Color
     {
@@ -24,6 +25,7 @@ enum Mood: String, CaseIterable, Codable {
         case .neutral: return .yellow
         case .pleasant: return .green
         case .veryPleasant: return .blue
+        case .unknown: return .mint
         }
     }
 }
