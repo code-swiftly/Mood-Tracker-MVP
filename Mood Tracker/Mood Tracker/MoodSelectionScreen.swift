@@ -26,9 +26,6 @@ struct MoodSelectionScreen: View {
                 Spacer()
                 
                 BlobView(color: viewModel.selectedMood.color)
-                    .onTapGesture {
-                        viewModel.fetch()
-                    }
                 
                 Spacer()
                 

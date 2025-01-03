@@ -8,15 +8,31 @@
 import SwiftUI
 import SwiftData
 
+struct TappedDate: Identifiable {
+    var id: UUID = UUID()
+    var date: Date
+    var mood: Mood
+}
+
 struct MoodHistoryView: View {
     var viewModel: SavedMoodViewModel
+    
+    @State var tappedDate: TappedDate?
 
     var body: some View {
         VStack {
             HeaderView(viewModel: viewModel)
-            CalendarView(viewModel: viewModel)
+            CalendarView(viewModel: viewModel, tappedDate: $tappedDate)
         }
-        
+        .sheet(item: $tappedDate) { tappedDate in
+            MoodPickerSheet(tappedDate: $tappedDate, onSave: {
+                mood in
+                viewModel.save(mood: mood, date: tappedDate.date)
+                self.tappedDate = nil
+            }, dismiss: {
+                self.tappedDate = nil
+            })
+        }
         .padding(.all, 20)
     }
 }
@@ -50,11 +66,12 @@ struct HeaderView:View {
 struct CalendarView: View {
     var viewModel: SavedMoodViewModel
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    @Binding var tappedDate: TappedDate?
     
     var body: some View {
         LazyVGrid(columns: columns) {
             DaysOfWeekView()
-            DaysOfMonthView(viewModel: viewModel)
+            DaysOfMonthView(tappedDate: $tappedDate, viewModel: viewModel)
         }
     }
     
@@ -70,6 +87,7 @@ struct CalendarView: View {
     }
     
     struct DaysOfMonthView: View {
+        @Binding var tappedDate: TappedDate?
         var viewModel: SavedMoodViewModel
 
         var body: some View {
@@ -80,7 +98,43 @@ struct CalendarView: View {
                         .fill(moodForDay.color)
                         .frame(width: 40, height: 40)
                     Text(Calendar.current.component(.day, from: dayOfMonth).description)
+                }.onTapGesture {
+                    let today = Date().normalizedDate
+
+                    if dayOfMonth <= today {
+                        tappedDate = TappedDate(date: dayOfMonth, mood: moodForDay)
+                    }
                 }
+            }
+        }
+    }
+}
+
+struct MoodPickerSheet: View {
+    @Binding var tappedDate: TappedDate?
+    let onSave: (Mood) -> Void
+    let dismiss: () -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Select Mood")
+                .font(.headline)
+                .padding()
+            
+            ForEach(Mood.allCases, id: \.self) { mood in
+                Button(action: {
+                    onSave(mood)
+                    dismiss()
+                }) {
+                    HStack {
+                        Circle()
+                            .fill(mood.color)
+                            .frame(width: 20, height: 20)
+                        Text(mood.rawValue.capitalized)
+                            .padding()
+                    }
+                }
+                .padding(5)
             }
         }
     }

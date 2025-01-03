@@ -64,6 +64,7 @@ import SwiftData
             let savedMood = SavedMood(date: normalizedDate, mood: mood)
             context?.insert(savedMood)
         }
+        savedMoods[normalizedDate] = mood
     }
     
     func fetch() {
