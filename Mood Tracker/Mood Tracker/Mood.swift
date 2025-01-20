@@ -7,8 +7,24 @@
 
 import Foundation
 import SwiftUI
+import AppIntents
 
-enum Mood: String, CaseIterable, Codable {
+enum Mood: String, CaseIterable, Codable, AppEnum {
+    static var typeDisplayRepresentation: TypeDisplayRepresentation {
+        "Mood"
+    }
+    
+    static var caseDisplayRepresentations: [Mood: DisplayRepresentation] {
+        [
+            .veryUnpleasant: "😭 very unpleasant",
+            .unpleasant: "☹️ unpleasant",
+            .neutral: "😕 neutral",
+            .pleasant: "🙂 pleasant",
+            .veryPleasant: "😁 very pleasant",
+            .unknown: "😐 unknown"
+        ]
+    }
+    
     case veryUnpleasant = "Very Unpleasant"
     case unpleasant = "Unpleasant"
     case neutral = "Neutral"

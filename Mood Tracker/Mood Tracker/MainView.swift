@@ -28,6 +28,11 @@ struct MainView: View {
                 .tabItem {
                     Label("Mood History", systemImage: "list.dash")
                 }
+            
+            AnalyticsView()
+                .tabItem {
+                    Label("Analytics", systemImage: "chart.bar.fill")
+                }
         }
         .tint(Color.black)
         .onAppear {

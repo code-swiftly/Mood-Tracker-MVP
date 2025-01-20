@@ -1,0 +1,82 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld%%" : {
+
+    },
+    "☹️ unpleasant" : {
+
+    },
+    "😁 very pleasant" : {
+
+    },
+    "😐 unknown" : {
+
+    },
+    "😕 neutral" : {
+
+    },
+    "😭 very unpleasant" : {
+
+    },
+    "🙂 pleasant" : {
+
+    },
+    "Analytics" : {
+
+    },
+    "How are you feeling today?" : {
+
+    },
+    "Key" : {
+      "extractionState" : "manual"
+    },
+    "Log My Mood" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrar mi estado de ánimo"
+          }
+        }
+      }
+    },
+    "Logs your mood in the mood tracker app" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra tu estado de ánimo en la aplicación de seguimiento"
+          }
+        }
+      }
+    },
+    "Mood" : {
+
+    },
+    "Mood History" : {
+
+    },
+    "Mood Selection" : {
+
+    },
+    "Percentage" : {
+
+    },
+    "Save" : {
+
+    },
+    "Select Mood" : {
+
+    },
+    "Select Range" : {
+
+    },
+    "We've logged your mood for today as %@" : {
+
+    }
+  },
+  "version" : "1.0"
+}
