@@ -33,7 +33,12 @@ struct MoodHistoryView: View {
                 self.tappedDate = nil
             })
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: { _ in refreshData() })
         .padding(.all, 20)
+    }
+    
+    private func refreshData() {
+        viewModel.refreshData()
     }
 }
 

@@ -28,6 +28,10 @@ import SwiftData
     
     init(context: ModelContext? = nil) {
         self.context = context
+        refreshData()
+    }
+    
+    func refreshData() {
         fetch()
         updateMonthDay()
     }
